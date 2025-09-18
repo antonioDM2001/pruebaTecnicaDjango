@@ -1,0 +1,2 @@
+#Instalar Django framework
+pip install djangorestframework --upgrade
