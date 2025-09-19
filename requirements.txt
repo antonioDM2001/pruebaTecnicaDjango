@@ -1,2 +1,3 @@
-#Instalar Django framework
+#Instalar Django y Django rest framework
+pip install django --upgrade
 pip install djangorestframework --upgrade
