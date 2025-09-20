@@ -1,0 +1,31 @@
+<h1>{{ title }}</h1>
+<form method="post" id="zooForm">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" id="submitBtn" disabled>Guardar</button>
+</form>
+<a href="{% url 'zoo-list' %}">Volver</a>
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("zooForm");
+    const submitBtn = document.getElementById("submitBtn");
+
+    function checkForm() {
+        const fields = form.querySelectorAll("input, select, textarea");
+        let allFilled = true;
+
+        fields.forEach(field => {
+            if (field.type !== "hidden" && field.type !== "submit") {
+                if (!field.value.trim()) {
+                    allFilled = false;
+                }
+            }
+        });
+
+        submitBtn.disabled = !allFilled;
+    }
+    checkForm();
+    form.addEventListener("input", checkForm);
+});
+</script>

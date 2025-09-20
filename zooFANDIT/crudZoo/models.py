@@ -23,8 +23,8 @@ class Animal(models.Model):
         verbose_name_plural = 'Especies'
 
 
-def __str__(self):
-    return f"{self.common_name} ({self.scientific_name})"
+    def __str__(self):
+        return f"{self.common_name} ({self.scientific_name})"
 
 class Zoo(models.Model):
     name = models.CharField('Nombre', max_length=255)

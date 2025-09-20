@@ -1,24 +1,22 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <title>Listado de Zoos</title>
-</head>
-<body>
-    <h1>Listado de Zoológicos</h1>
-    <ul>
-        {% for zoo in zoos %}
-        <li>
-            <strong>{{ zoo.name }}</strong> - {{ zoo.city }}, {{ zoo.country }}<br>
-            Tamaño: {{ zoo.size_m2 }} m² | Presupuesto: {{ zoo.annual_budget }} €<br>
-            Animales: 
-            <ul>
-                {% for animal in zoo.animals.all %}
-                <li>{{ animal.common_name }} ({{ animal.family.name }})</li>
-                {% endfor %}
-            </ul>
-        </li>
-        {% endfor %}
-    </ul>
-</body>
-</html>
+<h1>Listado de Zoológicos</h1>
+<a href="{% url 'zoo-create' %}">Crear Nuevo Zoo</a>
+<ul>
+{% for item in zoo_data %}
+    <li>
+        <strong>{{ item.zoo.name }}</strong> - {{ item.zoo.city }}, {{ item.zoo.country }}
+        <br>
+        Animales: {{ item.animal_count }}
+        <br>
+
+        <ul>
+            {% for family, animals in item.animals_by_family.items %}
+                <li>
+                    <strong>{{ family }}</strong>:
+                    {{ animals|join:", " }}
+                </li>
+            {% endfor %}
+        </ul>
+    </li>
+{% endfor %}
+</ul>
+

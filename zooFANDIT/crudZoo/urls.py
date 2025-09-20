@@ -1,7 +1,7 @@
 #from rest_framework.routers import DefaultRouter
 from .views import FamilyViewSet, AnimalSpeciesViewSet, ZooViewSet
 from django.urls import path
-from .views import zoo_list_view
+from .views import zoo_list_view, zoo_create_view
 
 
 #router = DefaultRouter()
@@ -13,4 +13,5 @@ from .views import zoo_list_view
 #urlpatterns = router.urls
 urlpatterns = [
     path('', zoo_list_view, name='zoo-list'),
+    path('create/',zoo_create_view, name='zoo-create'),
 ]
