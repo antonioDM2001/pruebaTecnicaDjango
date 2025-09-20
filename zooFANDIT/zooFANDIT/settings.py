@@ -37,8 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'crudZoo',
     'rest_framework',
+    'crudZoo',
 ]
 
 MIDDLEWARE = [
@@ -76,8 +76,12 @@ WSGI_APPLICATION = 'zooFANDIT.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'fandit_zoo',
+        'USER': 'zoo_user',
+        'PASSWORD': 'zoo_password',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 

@@ -7,3 +7,27 @@ python3 manage.py runserver
 
 #Ejecutar migraciones (si nos lo pide el servidor al ejecutarlo)
 python3 manage.py migrate
+
+#PostgreSql
+#Descargar postgreSql
+sudo apt install postgresql postgresql-contrib
+
+#Acceder a postgreSql
+sudo -u postgres psql
+
+#Crear base de datos y usuario (una vez accedamosa postgreSql)
+CREATE DATABASE fandit_zoo;
+CREATE USER zoo_user WITH PASSWORD 'zoo_password';
+ALTER ROLE zoo_user SET client_encoding TO 'utf8';
+ALTER ROLE zoo_user SET default_transaction_isolation TO 'read committed';
+ALTER ROLE zoo_user SET timezone TO 'UTC';
+GRANT ALL PRIVILEGES ON DATABASE fandit_zoo TO zoo_user;
+
+#Instalar driver postgreSql
+pip install psycopg2-binary
+
+#Cargar datos en la BD
+python3 manage.py loaddata crudZoo/fixtures/families.json
+python3 manage.py loaddata crudZoo/fixtures/animals.json
+python3 manage.py loaddata crudZoo/fixtures/zoos.json
+

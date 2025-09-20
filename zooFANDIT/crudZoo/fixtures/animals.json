@@ -1,0 +1,33 @@
+[
+  {
+    "model": "crudZoo.animal",
+    "pk": 1,
+    "fields": {
+      "common_name": "Tigre",
+      "scientific_name": "Panthera tigris",
+      "endangered": true,
+      "family": 1
+    }
+  },
+  {
+    "model": "crudZoo.animal",
+    "pk": 2,
+    "fields": {
+      "common_name": "Oso panda gigante",
+      "scientific_name": "Ailuropoda melanoleuca",
+      "endangered": true,
+      "family": 2
+    }
+  },
+  {
+    "model": "crudZoo.animal",
+    "pk": 3,
+    "fields": {
+      "common_name": "Lobo gris",
+      "scientific_name": "Canis lupus",
+      "endangered": false,
+      "family": 3
+    }
+  }
+]
+

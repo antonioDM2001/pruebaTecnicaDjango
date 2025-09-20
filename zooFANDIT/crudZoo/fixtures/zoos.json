@@ -1,0 +1,26 @@
+[
+  {
+    "model": "crudZoo.zoo",
+    "pk": 1,
+    "fields": {
+      "name": "Zoo de Madrid",
+      "city": "Madrid",
+      "country": "España",
+      "size_m2": 25000,
+      "annual_budget": "500000.00",
+      "animals": [1, 2]
+    }
+  },
+  {
+    "model": "crudZoo.zoo",
+    "pk": 2,
+    "fields": {
+      "name": "Zoo de Berlín",
+      "city": "Berlín",
+      "country": "Alemania",
+      "size_m2": 30000,
+      "annual_budget": "600000.00",
+      "animals": [1, 3]
+    }
+  }
+]

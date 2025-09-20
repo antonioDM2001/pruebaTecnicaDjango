@@ -1,0 +1,25 @@
+[
+  {
+    "model": "crudZoo.family",
+    "pk": 1,
+    "fields": {
+      "name": "Felidae"
+    }
+  },
+  {
+    "model": "crudZoo.family",
+    "pk": 2,
+    "fields": {
+      "name": "Ursidae"
+    }
+  },
+  {
+    "model": "crudZoo.family",
+    "pk": 3,
+    "fields": {
+      "name": "Canidae"
+    }
+  }
+]
+
+
