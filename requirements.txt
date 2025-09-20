@@ -1,3 +1,9 @@
 #Instalar Django y Django rest framework
 pip install django --upgrade
 pip install djangorestframework --upgrade
+
+#Ejecutar el servidor de desarrollo
+python3 manage.py runserver
+
+#Ejecutar migraciones (si nos lo pide el servidor al ejecutarlo)
+python3 manage.py migrate

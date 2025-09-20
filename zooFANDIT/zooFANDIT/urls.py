@@ -15,8 +15,22 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
+from django.http import JsonResponse
 
+def root_view(request):
+    return JsonResponse({
+        "message": "Bienvenido a la API de Fandit Zoo 🦁",
+        "endpoints": {
+            "admin": "/admin/",
+            "api_zoos": "/api/zoos/",
+            "api_animals": "/api/animals/",
+            "api_families": "/api/families/",
+        }
+    })
+    
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path("", root_view),
+    path('api/', include('crudZoo.urls')),
 ]
