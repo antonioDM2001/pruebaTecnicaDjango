@@ -1,9 +1,10 @@
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,get_object_or_404
 from rest_framework import viewsets
 from .models import Family, Animal, Zoo
 from .forms import ZooForm
 from .serializers import FamilySerializer, AnimalSpeciesSerializer, ZooCreateSerializer, ZooListSerializer, ZooDetailSerializer
 from collections import defaultdict
+from django.http import JsonResponse
 
 class FamilyViewSet(viewsets.ModelViewSet):
     queryset = Family.objects.all()
@@ -12,11 +13,6 @@ class FamilyViewSet(viewsets.ModelViewSet):
 class AnimalSpeciesViewSet(viewsets.ModelViewSet):
     queryset = Animal.objects.select_related('family').all()
     serializer_class = AnimalSpeciesSerializer
-
-
-class ZooViewSet(viewsets.ModelViewSet):
-    queryset = Zoo.objects.prefetch_related('animals__family').all()
-
 
 def zoo_list_view(request):
     zoos = Zoo.objects.all().prefetch_related('animals__family')
@@ -37,6 +33,7 @@ def zoo_list_view(request):
         })
 
     return render(request, 'crudZoo/zoo_list.html', {'zoo_data': zoo_data})
+
 def zoo_create_view(request):
     if request.method == 'POST':
         form = ZooForm(request.POST)
@@ -46,6 +43,18 @@ def zoo_create_view(request):
     else:
         form = ZooForm()
     return render(request, 'crudZoo/zoo_form.html', {'form': form, 'title': 'Crear Zoo'})   
+
+
+def zoo_delete_view(request, pk):
+    zoo = get_object_or_404(Zoo, pk=pk)
+
+    if request.method == "POST":
+        zoo.delete()
+        if request.headers.get('x-requested-with') == 'XMLHttpRequest':
+            return JsonResponse({'success': True})
+        return redirect('zoo-list')
+
+    return redirect('zoo-list')
     
 def get_serializer_class(self):
     # Selección de serializer según la acción

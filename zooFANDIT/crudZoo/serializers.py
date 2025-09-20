@@ -1,6 +1,11 @@
 from rest_framework import serializers
 from .models import Family, Animal, Zoo
 
+class ZooSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Zoo
+        fields = "__all__"
+        
 class FamilySerializer(serializers.ModelSerializer):
     class Meta:
         model = Family
