@@ -31,6 +31,7 @@ def root_view(request):
     
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path("", root_view),
-    path('api/', include('crudZoo.urls')),
+    #path("", root_view),
+    path('', include('crudZoo.urls')),
+    #path('api/', include('crudZoo.urls')),
 ]

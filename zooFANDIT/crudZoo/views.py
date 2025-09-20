@@ -16,6 +16,10 @@ class ZooViewSet(viewsets.ModelViewSet):
     queryset = Zoo.objects.prefetch_related('animals__family').all()
 
 
+def zoo_list_view(request):
+    zoos = Zoo.objects.all().prefetch_related('animals')  # optimiza consultas
+    return render(request, 'crudZoo/zoo_list.html', {'zoos': zoos})
+    
 def get_serializer_class(self):
     # Selección de serializer según la acción
     if self.action == 'list':
