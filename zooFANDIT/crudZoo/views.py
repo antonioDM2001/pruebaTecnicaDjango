@@ -56,6 +56,17 @@ def zoo_delete_view(request, pk):
 
     return redirect('zoo-list')
     
+def zoo_update_view(request, pk):
+    zoo = get_object_or_404(Zoo, pk=pk)
+    if request.method == 'POST':
+        form = ZooForm(request.POST, instance=zoo)
+        if form.is_valid():
+            form.save()
+            return redirect('zoo-list')
+    else:
+        form = ZooForm(instance=zoo)
+    return render(request, 'crudZoo/zoo_form.html', {'form': form, 'title': f'Editar {zoo.name}'})
+    
 def get_serializer_class(self):
     # Selección de serializer según la acción
     if self.action == 'list':
