@@ -13,6 +13,26 @@
     "model": "crudZoo.animal",
     "pk": 2,
     "fields": {
+      "common_name": "León",
+      "scientific_name": "Panthera leo",
+      "endangered": false,
+      "family": 1
+    }
+  },
+  {
+    "model": "crudZoo.animal",
+    "pk": 3,
+    "fields": {
+      "common_name": "Jaguar",
+      "scientific_name": "Panthera onca",
+      "endangered": true,
+      "family": 1
+    }
+  },
+  {
+    "model": "crudZoo.animal",
+    "pk": 4,
+    "fields": {
       "common_name": "Oso panda gigante",
       "scientific_name": "Ailuropoda melanoleuca",
       "endangered": true,
@@ -21,13 +41,54 @@
   },
   {
     "model": "crudZoo.animal",
-    "pk": 3,
+    "pk": 5,
+    "fields": {
+      "common_name": "Oso pardo",
+      "scientific_name": "Ursus arctos",
+      "endangered": false,
+      "family": 2
+    }
+  },
+  {
+    "model": "crudZoo.animal",
+    "pk": 6,
+    "fields": {
+      "common_name": "Oso polar",
+      "scientific_name": "Ursus maritimus",
+      "endangered": true,
+      "family": 2
+    }
+  },
+  {
+    "model": "crudZoo.animal",
+    "pk": 7,
     "fields": {
       "common_name": "Lobo gris",
       "scientific_name": "Canis lupus",
       "endangered": false,
       "family": 3
     }
+  },
+  {
+    "model": "crudZoo.animal",
+    "pk": 8,
+    "fields": {
+      "common_name": "Zorro rojo",
+      "scientific_name": "Vulpes vulpes",
+      "endangered": false,
+      "family": 3
+    }
+  },
+  {
+    "model": "crudZoo.animal",
+    "pk": 9,
+    "fields": {
+      "common_name": "Coyote",
+      "scientific_name": "Canis latrans",
+      "endangered": false,
+      "family": 3
+    }
   }
 ]
+
 

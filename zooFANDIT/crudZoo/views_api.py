@@ -42,32 +42,47 @@ class ZooViewSet(viewsets.ViewSet):
                 form = ZooForm()
             return Response({"form": form, "title": "Crear Nuevo Zoo"}, template_name="crudZoo/zoo_form.html")
 
-        serializer = ZooSerializer(data=request.data)
+        data = request.data.copy()
+        animal_names = data.pop("animals", [])
+        serializer = ZooSerializer(data=data)
+
         if serializer.is_valid():
             zoo = serializer.save()
-            return Response(ZooSerializer(zoo).data)
-        return Response(serializer.errors, status=400)
+            animals_to_add = Animal.objects.filter(scientific_name__in=animal_names)
+            zoo.animals.set(animals_to_add)
+            
+            return Response(ZooSerializer(zoo).data, status=status.HTTP_201_CREATED)
+
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
     def edit(self, request, pk=None):
         zoo = get_object_or_404(Zoo, pk=pk)
 
-        if request.method == "GET":
-            form = ZooForm(instance=zoo)
+        if request.accepted_renderer.format == "html":
+            if request.method == "POST":
+                form = ZooForm(request.POST, instance=zoo)
+                if form.is_valid():
+                    form.save()
+                    return redirect("zoo-list")
+            else:
+                form = ZooForm(instance=zoo)
             return Response({"form": form, "title": f"Editar Zoo: {zoo.name}"}, template_name="crudZoo/zoo_form.html")
 
         if request.content_type == "application/json":
-            serializer = ZooSerializer(zoo, data=request.data)
+            data = request.data.copy()
+            animal_names = data.pop("animals", [])
+            
+            serializer = ZooSerializer(zoo, data=data, partial=True)
             if serializer.is_valid():
-                serializer.save()
-                return Response(serializer.data)
+                zoo = serializer.save()
+
+                animals_to_add = Animal.objects.filter(scientific_name__in=animal_names)
+                zoo.animals.set(animals_to_add)
+
+                return Response(ZooSerializer(zoo).data)
+
             return Response(serializer.errors, status=400)
-        else:
-            form = ZooForm(request.POST, instance=zoo)
-            if form.is_valid():
-                form.save()
-                return redirect("zoo-list")
-            return Response({"form": form, "title": f"Editar Zoo: {zoo.name}"}, template_name="crudZoo/zoo_form.html", status=400)
 
 
     def delete(self, request, pk=None):
