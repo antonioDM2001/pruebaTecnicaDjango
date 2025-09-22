@@ -6,13 +6,6 @@ from .serializers import FamilySerializer, AnimalSpeciesSerializer, ZooCreateSer
 from collections import defaultdict
 from django.http import JsonResponse
 
-class FamilyViewSet(viewsets.ModelViewSet):
-    queryset = Family.objects.all()
-    serializer_class = FamilySerializer
-
-class AnimalSpeciesViewSet(viewsets.ModelViewSet):
-    queryset = Animal.objects.select_related('family').all()
-    serializer_class = AnimalSpeciesSerializer
 
 def zoo_list_view(request):
     zoos = Zoo.objects.all().prefetch_related('animals__family')
@@ -67,10 +60,3 @@ def zoo_update_view(request, pk):
         form = ZooForm(instance=zoo)
     return render(request, 'crudZoo/zoo_form.html', {'form': form, 'title': f'Editar {zoo.name}'})
     
-def get_serializer_class(self):
-    # Selección de serializer según la acción
-    if self.action == 'list':
-        return ZooListSerializer
-    if self.action in ['create', 'update', 'partial_update']:
-        return ZooCreateSerializer
-    return ZooDetailSerializer

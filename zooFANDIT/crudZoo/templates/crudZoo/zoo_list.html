@@ -100,6 +100,8 @@
                 <button class="btn btn-delete" onclick="confirmDelete('{{ item.zoo.id }}', '{{ item.zoo.name|escapejs }}')">Eliminar</button>
             </div>
         </div>
+        <p>Tamaño: {{ item.zoo.size_m2}} m²</p>
+        <p>Presupuesto anual: {{ item.zoo.annual_budget}} €</p>
         <p>Animales: {{ item.animal_count }}</p>
         <ul class="animal-list">
             {% for family, animals in item.animals_by_family.items %}

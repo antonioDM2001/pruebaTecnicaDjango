@@ -9,7 +9,7 @@ class FamilyAdmin(admin.ModelAdmin):
 
 
 @admin.register(Animal)
-class AnimalSpeciesAdmin(admin.ModelAdmin):
+class AnimalAdmin(admin.ModelAdmin):
     list_display = ('id', 'common_name', 'scientific_name', 'family', 'endangered')
     list_filter = ('family', 'endangered')
     search_fields = ('common_name', 'scientific_name')

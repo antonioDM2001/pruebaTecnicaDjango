@@ -22,5 +22,17 @@
       "annual_budget": "600000.00",
       "animals": [1, 3]
     }
+  },
+  {
+    "model": "crudZoo.zoo",
+    "pk": 3,
+    "fields": {
+      "name": "Zoo de Australia",
+      "city": "Sydeney",
+      "country": "Australia",
+      "size_m2": 200000,
+      "annual_budget": "800000.00",
+      "animals": [1,2,3]
+    }
   }
 ]
