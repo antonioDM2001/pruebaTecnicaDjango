@@ -1,0 +1,92 @@
+{
+  "info": {
+    "name": "Fandit Zoo API",
+    "_postman_id": "f3c8c85c-2c44-4a6f-9a6a-1234567890ab",
+    "description": "Colección de Postman para probar la API REST de gestión de zoológicos.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Zoos",
+      "item": [
+        {
+          "name": "Listar Zoos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://127.0.0.1:8000/",
+              "protocol": "http",
+              "host": ["127.0.0.1"],
+              "port": "8000"
+            },
+            "description": "Devuelve todos los zoológicos con detalles:\n- ID, nombre, ciudad, país\n- Tamaño (m²) y presupuesto anual\n- Cantidad de animales\n- Animales agrupados por familia\n\nÚtil para obtener IDs de zoológicos y ver la información completa de cada zoo."
+          }
+        },
+        {
+          "name": "Crear Zoo",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Zoo de Madrid\",\n  \"city\": \"Madrid\",\n  \"country\": \"España\",\n  \"size_m2\": 100000,\n  \"annual_budget\": 5000000,\n  \"animals\": [1, 2]\n}"
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/create/",
+              "protocol": "http",
+              "host": ["127.0.0.1"],
+              "port": "8000",
+              "path": ["create", ""]
+            },
+            "description": "Crea un nuevo zoológico.\n- Los animales se pasan mediante IDs (1,2,3).\n- Devuelve el nuevo zoológico con su información completa."
+          }
+        },
+        {
+          "name": "Actualizar Zoo",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Zoo de Barcelona\",\n  \"city\": \"Barcelona\",\n  \"country\": \"España\",\n  \"size_m2\": 120000,\n  \"annual_budget\": 6000000,\n  \"animals\": [1, 3]\n}"
+            },
+            "url": {
+              "raw": "http://127.0.0.1:8000/1/edit/",
+              "protocol": "http",
+              "host": ["127.0.0.1"],
+              "port": "8000",
+              "path": ["1", "edit", ""]
+            },
+            "description": "Actualiza el zoológico con ID = 1.\n- Se pueden modificar todos los campos, incluyendo los animales mediante sus IDs.\n- Devuelve los datos actualizados del zoológico."
+          }
+        },
+        {
+          "name": "Eliminar Zoo",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "http://127.0.0.1:8000/1/delete/",
+              "protocol": "http",
+              "host": ["127.0.0.1"],
+              "port": "8000",
+              "path": ["1", "delete", ""]
+            },
+            "description": "Elimina el zoológico con ID = 1.\n- Devuelve un mensaje de confirmación si se elimina correctamente."
+          }
+        }
+      ]
+    }
+  ]
+}
+
