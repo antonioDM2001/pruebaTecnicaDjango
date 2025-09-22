@@ -10,7 +10,6 @@
         <button type="button" onclick="window.location.href='{% url 'zoo-edit' item.zoo.id %}'"> Editar </button>
 
         <button type="button" onclick="confirmDelete('{{ item.zoo.id }}', '{{ item.zoo.name|escapejs }}')">Eliminar</button>
-
         <ul>
             {% for family, animals in item.animals_by_family.items %}
                 <li>

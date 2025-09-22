@@ -34,7 +34,7 @@ class ZooCreateSerializer(serializers.ModelSerializer):
 
 
     def _resolve_scientific_names(self, names):
-        animals = AnimalSpecies.objects.filter(scientific_name__in=names)
+        animals = Animal.objects.filter(scientific_name__in=names)
         found = {a.scientific_name for a in animals}
         missing = set(names) - found
         return animals, missing
@@ -78,7 +78,6 @@ class ZooListSerializer(serializers.ModelSerializer):
 
 
     def get_animals_by_family(self, obj):
-        # retorna un dict { 'Familia A': ['nombre vulgar 1', 'nombre vulgar 2'], ... }
         qs = obj.animals.select_related('family').all()
         grouped = {}
         for a in qs:

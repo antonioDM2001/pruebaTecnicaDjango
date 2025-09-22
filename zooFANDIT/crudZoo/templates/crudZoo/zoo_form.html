@@ -1,10 +1,10 @@
-<h1>{{ title }}</h1>
+<h1>Crear Nuevo Zoo</h1>
 <form method="post" id="zooForm">
     {% csrf_token %}
     {{ form.as_p }}
     <button type="submit" id="submitBtn" disabled>Guardar</button>
 </form>
-<a href="{% url 'zoo-list' %}">Volver</a>
+<button onclick="window.location.href='{% url 'zoo-list' %}'" class="btn btn-primary">Volver al listado</button>
 
 <script>
 document.addEventListener("DOMContentLoaded", function () {
@@ -25,6 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
         submitBtn.disabled = !allFilled;
     }
+
     checkForm();
     form.addEventListener("input", checkForm);
 });

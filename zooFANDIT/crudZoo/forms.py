@@ -10,4 +10,4 @@ class ZooForm(forms.ModelForm):
 
     class Meta:
         model = Zoo
-        fields = ['name', 'city', 'country', 'size_m2', 'annual_budget', 'animals']
+        fields = ["name", "city", "country", "size_m2", "annual_budget", "animals"]
