@@ -1,5 +1,5 @@
 <h1>Listado de Zoológicos</h1>
-<a href="{% url 'zoo-create' %}">Crear Nuevo Zoo</a>
+<button onclick="window.location.href='{% url 'zoo-create' %}'" class="btn btn-success"> Crear Nuevo Zoo </button>
 <ul>
 {% for item in zoo_data %}
     <li id="zoo-{{ item.zoo.id }}">
