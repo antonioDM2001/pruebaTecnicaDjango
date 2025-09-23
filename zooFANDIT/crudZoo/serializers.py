@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from .models import Family, Animal, Zoo
+from .models import Zoo
 
 class ZooSerializer(serializers.ModelSerializer):
     animal_names = serializers.SlugRelatedField(

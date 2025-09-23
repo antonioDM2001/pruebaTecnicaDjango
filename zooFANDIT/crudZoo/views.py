@@ -1,8 +1,7 @@
 from django.shortcuts import render,redirect,get_object_or_404
 from rest_framework import viewsets
-from .models import Family, Animal, Zoo
+from .models import Zoo
 from .forms import ZooForm
-from .serializers import FamilySerializer, AnimalSpeciesSerializer, ZooCreateSerializer, ZooListSerializer, ZooDetailSerializer
 from collections import defaultdict
 from django.http import JsonResponse
 

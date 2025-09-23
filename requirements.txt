@@ -1,3 +1,4 @@
+##PASOS PRINCIPALES PARA LA PUESTA EN MARCHA DE LA APP (EN LINUX)##
 #Instalar Django y Django rest framework
 	pip install django --upgrade
 	pip install djangorestframework --upgrade
@@ -18,20 +19,55 @@
 	#Acceder a postgreSql
 		sudo -u postgres psql
 
-#Crear base de datos y usuario (una vez accedamosa postgreSql)
+#Crear base de datos y usuario (una vez accedamos a postgreSql)
 	CREATE DATABASE fandit_zoo;
 	CREATE USER zoo_user WITH PASSWORD 'zoo_password';
 	ALTER ROLE zoo_user SET client_encoding TO 'utf8';
 	ALTER ROLE zoo_user SET default_transaction_isolation TO 'read committed';
 	ALTER ROLE zoo_user SET timezone TO 'UTC';
 	GRANT ALL PRIVILEGES ON DATABASE fandit_zoo TO zoo_user;
+	
+Esta configuración se encuentra ya establecida en el proyecto en el archivo zooFANDIT/settings.py pero
+debemos crear la BD con los comandos anteriores para que funcione la aplicación.
 
 #Cargar datos en la BD
 Antes de cargar los datos, aplicamos las migraciones:
 	python3 manage.py makemigrations crudZoo
 	python3 manage.py migrate
-Una vez hecho, cargamos los datos de los archivos .json:
+Una vez hecho, cargamos los datos de los archivos .json desde el directorio /zooFANDIT:
 	python3 manage.py loaddata crudZoo/fixtures/families.json
 	python3 manage.py loaddata crudZoo/fixtures/animals.json
 	python3 manage.py loaddata crudZoo/fixtures/zoos.json
 
+#Postman
+Antes de ejecutar la colección de Postman, debemos descargarlo en el equipo.
+Para ello, debemos ir al sitio web oficial (https://www.postman.com/downloads/) y 
+descargar el instalador que necesitamos (en este caso, el de linux).
+
+Una vez dentro de Postman, crearemos un entorno e inicializaremos la variable zoo_id:
+
+Environments → Manage Environments → Add (+)
+
+Nombre: Fandit Zoo API
+
+Variable: zoo_id (Initial y Current vacíos).
+
+Una vez hecho, clicamos dos veces sobre el entorno e importaremos la colección:
+
+Collections → Import.
+
+Seleccionamos el archivo .json.
+
+Endpoints disponibles: Listar, Crear, Editar, Eliminar Zoo.
+
+Configurar variable zoo_id:
+
+Accedemos a Crear Zoo → Scripts → Tests.
+
+Pegamos en la sección de Scripts este código:
+let data = pm.response.json();
+if (data.id) {
+    pm.environment.set("zoo_id", data.id);
+}
+
+De esta forma, Postman tomará el ID del último zoo creado automáticamente para los endpoints de editar y eliminar zoo.

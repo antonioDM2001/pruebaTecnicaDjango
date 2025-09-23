@@ -2,7 +2,7 @@
   "info": {
     "name": "Fandit Zoo API",
     "_postman_id": "f3c8c85c-2c44-4a6f-9a6a-1234567890ab",
-    "description": "Colección de Postman para probar la API REST de gestión de zoológicos con flujo automático usando variable de entorno zoo_id.",
+    "description": "Colección de Postman para probar la API REST de gestión de zoológicos.",
     "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
   },
   "item": [
@@ -83,7 +83,7 @@
               "port": "8000",
               "path": ["{{zoo_id}}", "edit", ""]
             },
-            "description": "Actualiza el zoológico recién creado usando la variable de entorno zoo_id y nombres científicos de animales."
+            "description": "Actualiza el zoológico recién creado usando la variable de entorno zoo_id."
           }
         },
         {

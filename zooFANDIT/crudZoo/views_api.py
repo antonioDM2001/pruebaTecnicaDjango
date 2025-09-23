@@ -1,7 +1,7 @@
 from rest_framework import viewsets,status
 from rest_framework.renderers import JSONRenderer, TemplateHTMLRenderer
 from rest_framework.response import Response
-from django.shortcuts import get_object_or_404, redirect,render
+from django.shortcuts import get_object_or_404, redirect
 from .forms import ZooForm 
 from .models import Zoo,Animal
 from .serializers import ZooSerializer
